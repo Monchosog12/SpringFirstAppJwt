@@ -1,0 +1,173 @@
+.contenedor {
+  width: 90%;
+  margin: 30px auto;
+  background-color: #f5f5f5;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.contenedor .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.contador {
+  font-weight: bold;
+}
+
+.botones-superiores {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-recargar,
+.btn-nuevo,
+.btn-buscar,
+.btn-limpiar,
+.btn-eliminar,
+.btn-editar-fila,
+.btn-eliminar-fila {
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-recargar,
+.btn-nuevo {
+  padding: 10px 18px;
+}
+
+.btn-recargar {
+  background-color: #6c757d;
+}
+
+.btn-nuevo {
+  background-color: #198754;
+}
+
+.operaciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.seccion-operacion {
+  flex: 1 1 380px;
+}
+
+.seccion-operacion h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+}
+
+.barra-operacion {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.barra-operacion select,
+.barra-operacion input {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.barra-operacion input {
+  flex: 1;
+  min-width: 140px;
+}
+
+.btn-buscar,
+.btn-limpiar,
+.btn-eliminar {
+  padding: 8px 16px;
+}
+
+.btn-buscar {
+  background-color: #0d6efd;
+}
+
+.btn-limpiar {
+  background-color: #6c757d;
+}
+
+.btn-eliminar {
+  background-color: #dc3545;
+}
+
+.tabla-contenedor {
+  padding: 0 20px 20px 20px;
+  overflow-x: auto;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.tabla th,
+.tabla td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla th {
+  background-color: #212529;
+  color: white;
+}
+
+.tabla tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.rol {
+  padding: 3px 10px;
+  border-radius: 10px;
+  background-color: #6c757d;
+  color: white;
+  font-size: 0.85rem;
+}
+
+.rol-admin {
+  background-color: #dc3545;
+}
+
+.acciones-fila {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-editar-fila,
+.btn-eliminar-fila {
+  padding: 7px 15px;
+}
+
+.btn-editar-fila {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.btn-eliminar-fila {
+  background-color: #dc3545;
+}
+
+.sin-datos {
+  color: #6c757d;
+}
+
+button:hover {
+  opacity: 0.8;
+}

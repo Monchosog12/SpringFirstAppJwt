@@ -1,0 +1,53 @@
+<div class="contenedor-auth">
+
+  <div class="tarjeta">
+
+    <div class="header">
+      <h2><i class="bi bi-box-arrow-in-right"></i> Iniciar sesión</h2>
+    </div>
+
+    <form class="formulario" (ngSubmit)="iniciarSesion()">
+
+      @if (error()) {
+        <div class="alerta alerta-error">{{ error() }}</div>
+      }
+
+      <div class="campo">
+        <label for="username">Usuario</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          [(ngModel)]="username"
+          required
+          autocomplete="username"
+          placeholder="Ingrese su usuario">
+      </div>
+
+      <div class="campo">
+        <label for="password">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          autocomplete="current-password"
+          placeholder="Ingrese su contraseña">
+      </div>
+
+      <div class="acciones">
+        <button type="submit" class="btn-guardar" [disabled]="cargando()">
+          {{ cargando() ? 'Ingresando...' : 'Ingresar' }}
+        </button>
+      </div>
+
+      <p class="enlace">
+        ¿No tiene cuenta? <a routerLink="/registro">Regístrese aquí</a>
+      </p>
+
+    </form>
+
+  </div>
+
+</div>

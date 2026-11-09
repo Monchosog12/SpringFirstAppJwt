@@ -1,0 +1,74 @@
+<div class="contenedor-formulario">
+
+  <div class="header">
+    <h2>Editar usuario</h2>
+  </div>
+
+  <div class="formulario">
+
+    @if (error()) {
+      <div class="alerta alerta-error">{{ error() }}</div>
+    }
+
+    @if (usuario(); as usuarioActual) {
+      <form (ngSubmit)="guardar()">
+
+        <div class="info-usuario">
+          <span><strong>ID:</strong> {{ usuarioActual.id }}</span>
+          <span><strong>Usuario actual:</strong> {{ nombreOriginal() }}</span>
+          <span><strong>Edad:</strong> {{ usuarioActual.edad }}</span>
+          <span><strong>Nacimiento:</strong> {{ usuarioActual.fechaNacimiento ?? '-' }}</span>
+        </div>
+
+        <div class="campo">
+          <label for="username">Nuevo nombre de usuario</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            [(ngModel)]="usuarioActual.username"
+            required
+            placeholder="Ingrese el nuevo nombre de usuario">
+        </div>
+
+        <div class="campo">
+          <label for="password">Nueva contraseña</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            [(ngModel)]="usuarioActual.password"
+            required
+            autocomplete="new-password"
+            placeholder="Ingrese la nueva contraseña">
+        </div>
+
+        <div class="campo">
+          <label for="role">Rol</label>
+          <select id="role" name="role" [(ngModel)]="usuarioActual.role" required>
+            <option ngValue="USER">USER</option>
+            <option ngValue="ADMIN">ADMIN</option>
+          </select>
+        </div>
+
+        <div class="acciones">
+          <button type="submit" class="btn-guardar" [disabled]="guardando()">
+            Guardar cambios
+          </button>
+          <button type="button" class="btn-cancelar" routerLink="/">
+            Cancelar
+          </button>
+        </div>
+
+      </form>
+    } @else if (!error()) {
+      <p class="cargando">Cargando usuario...</p>
+    } @else {
+      <div class="acciones">
+        <button type="button" class="btn-cancelar" routerLink="/">Volver</button>
+      </div>
+    }
+
+  </div>
+
+</div>

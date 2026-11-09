@@ -1,0 +1,19 @@
+.contenedor-auth {
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+.tarjeta {
+  width: 100%;
+  max-width: 480px;
+  background-color: #f5f5f5;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.enlace {
+  margin: 15px 0 0 0;
+  text-align: center;
+}

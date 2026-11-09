@@ -1,0 +1,14 @@
+.navbar-brand {
+  font-weight: bold;
+}
+
+.sesion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nombre-usuario {
+  color: white;
+}

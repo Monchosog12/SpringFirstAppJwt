@@ -1,0 +1,123 @@
+<div class="contenedor">
+
+  <div class="header">
+    <h2>Usuarios</h2>
+    <div class="botones-superiores">
+      @if (total() !== null) {
+        <span class="contador">Total: {{ total() }}</span>
+      }
+      <button type="button" class="btn-recargar" (click)="loadUsuarios()">
+        <i class="bi bi-arrow-clockwise"></i> Recargar
+      </button>
+      @if (authService.esAdmin()) {
+        <button type="button" class="btn-nuevo" routerLink="/nuevo-usuario">
+          <i class="bi bi-plus-lg"></i> Nuevo usuario
+        </button>
+      }
+    </div>
+  </div>
+
+  @if (mensaje()) {
+    <div class="alerta alerta-exito">{{ mensaje() }}</div>
+  }
+  @if (error()) {
+    <div class="alerta alerta-error">{{ error() }}</div>
+  }
+
+  <div class="operaciones">
+
+    <div class="seccion-operacion">
+      <h3>Buscar</h3>
+      <form class="barra-operacion" (ngSubmit)="buscar()">
+        <select name="tipoBusqueda" [(ngModel)]="tipoBusqueda">
+          <option value="nombre">Nombre</option>
+          <option value="id">ID</option>
+          <option value="edad">Edad</option>
+          <option value="rol">Rol</option>
+        </select>
+        <input
+          type="text"
+          name="textoBusqueda"
+          [(ngModel)]="textoBusqueda"
+          placeholder="Valor a buscar">
+        <button type="submit" class="btn-buscar">Buscar</button>
+        <button type="button" class="btn-limpiar" (click)="limpiarBusqueda()">Limpiar</button>
+      </form>
+    </div>
+
+    @if (authService.esAdmin()) {
+      <div class="seccion-operacion">
+        <h3>Eliminar</h3>
+        <form class="barra-operacion" (ngSubmit)="eliminar()">
+          <select name="tipoEliminar" [(ngModel)]="tipoEliminar">
+            <option value="id">ID</option>
+            <option value="nombre">Nombre</option>
+            <option value="edad">Edad</option>
+          </select>
+          <input
+            type="text"
+            name="valorEliminar"
+            [(ngModel)]="valorEliminar"
+            placeholder="Valor a eliminar">
+          <button type="submit" class="btn-eliminar">Eliminar</button>
+        </form>
+      </div>
+    }
+
+  </div>
+
+  <div class="tabla-contenedor">
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Rol</th>
+          <th>Edad</th>
+          <th>Fecha de nacimiento</th>
+          @if (authService.esAdmin()) {
+            <th>Acciones</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (usuario of usuariosFiltrados(); track usuario.id) {
+          <tr>
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.username }}</td>
+            <td>
+              <span class="rol" [class.rol-admin]="usuario.role === 'ADMIN'">{{ usuario.role }}</span>
+            </td>
+            <td>{{ usuario.edad }}</td>
+            <td>{{ usuario.fechaNacimiento ?? '-' }}</td>
+            @if (authService.esAdmin()) {
+              <td>
+                <div class="acciones-fila">
+                  <button
+                    type="button"
+                    class="btn-editar-fila"
+                    [routerLink]="['/editar-usuario', usuario.id]">
+                    <i class="bi bi-pencil"></i> Editar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn-eliminar-fila"
+                    (click)="eliminarPorId(usuario.id!)">
+                    <i class="bi bi-trash"></i> Eliminar
+                  </button>
+                </div>
+              </td>
+            }
+          </tr>
+        } @empty {
+          <tr>
+            <td class="sin-datos" [attr.colspan]="authService.esAdmin() ? 6 : 5">
+              {{ cargando() ? 'Cargando usuarios...' : 'No hay usuarios para mostrar.' }}
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+</div>
